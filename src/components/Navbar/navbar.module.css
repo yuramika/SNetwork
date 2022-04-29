@@ -1,27 +1,40 @@
 .nav {
     grid-area: n;
     background-color: aquamarine;
+
 }
 
-li {
-    color: blueviolet;
-    list-style: none;
-}
-
-li:nth-child(2) {
-    color: #1082f5;
-}
-.active {
-border:5px solid deepskyblue;
-}
 a {
-    color: white;
-    text-shadow: 1px 1px 1px #000;
+    color: red;
     text-decoration: none;
-    transition: color 0.3s;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in;
+    line-height: 10px;
 }
 
 a:hover {
-    color: darkcyan;
+    color: #123127;
+    text-decoration: underline;
+    text-decoration-style: double;
+    text-decoration-color: hotpink;
+}
 
+a:focus {
+    color: indigo;
+}
+
+ol {
+    list-style: none;
+    text-align: center;
+
+
+}
+
+li {
+    margin: 0 30px 10px 0;
+    padding:5px 10px;
+    border:3px solid lightskyblue;
+}
+li:hover {
+    border:3px solid deeppink;
 }
