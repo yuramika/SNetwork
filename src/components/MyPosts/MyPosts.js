@@ -4,16 +4,26 @@ import Post from "../Post/Post";
 
 
 const MyPosts = () => {
+    let PostData = [
+        {message: 'Hi, my name is Yura', id: 1, likesCount: 3},
+        {message: 'Follow me', id: 2, likesCount: 4},
+        {message: 'reaaaact', id: 3, likesCount: 7},
+        {message: 'My account yuramika', id: 4, likesCount: 10}
+    ]
+
+    let PostsElement = PostData.map((posts)=>{return( <Post message={posts.message} likesCount={posts.likesCount}/>)})
     return (
         <div>
-            MY POST
+            <div className={classes.MyPost}><h3>MY POST</h3></div>
             <div className={classes.border}>
-                <textarea></textarea>
-                <button value="SEND">ADD POST</button>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button value="SEND">ADD POST</button>
+                </div>
             </div>
-            <Post message="Hi, my name is Yura" />
-            <Post message="my account yuramika"/>
-            <Post message="follow me"/>
+            {PostsElement}
         </div>
 
 
