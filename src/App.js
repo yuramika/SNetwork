@@ -9,7 +9,8 @@ import Music from "./components/Music/Music";
 import Videos from "./components/Videos/Videos";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-const App = () => {
+const App = (props) => {
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -18,8 +19,8 @@ const App = () => {
 
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path='/dialogs/*' element={<Dialogs/>}/>
-                        <Route path='/profile' element={<Profile/>}/>
+                        <Route path='/dialogs/*' element={<Dialogs dialogsData={props.appState.messagePage.dialogsData} MessageData={props.appState.messagePage.MessageData}/>}/>
+                        <Route path='/profile' element={<Profile PostData={props.appState.profilePage.PostData}/>}/>
                         <Route path='/photos' element={<Photos/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/videos' element={<Videos/>}/>
