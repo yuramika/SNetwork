@@ -6,7 +6,11 @@ import DialogItem from "./DialogItem/DialogItem";
 
 
 const Dialogs = (props) => {
-
+    let sendElement = React.createRef();
+  let send = () => {
+      let smessage = sendElement.current.value;
+      alert(smessage)
+  }
 
     let dialogsElements = props.dialogsData.map(dialog => {
         return (<DialogItem name={dialog.name} id={dialog.id}/>)
@@ -22,8 +26,14 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
+                <div>
+                    <textarea ref={sendElement}></textarea>
+                    <button onClick={send}>SEND</button>
+                </div>
             </div>
+
         </div>
+
     );
 }
 export default Dialogs
