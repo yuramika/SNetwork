@@ -1,13 +1,16 @@
 import React from "react";
 import classes from "./MyPosts.module.css"
 import Post from "../Post/Post";
+import {updateNewPostText} from "../../Redux/state";
 
 
 const MyPosts = (props) => {
     let addPost = () => {
+        props.addPost();
+    }
+    let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.addPost(text);
-
+        props.updateNewPostText(text);
     }
     let newPostElement = React.createRef()
     let PostsElement = props.PostData.map((posts)=>{return( <Post message={posts.message} likesCount={posts.likesCount}/>)})
@@ -16,7 +19,7 @@ const MyPosts = (props) => {
                     <div className={classes.MyPost}><h3>MY POST</h3></div>
             <div className={classes.border}>
                 <div>
-                    <textarea ref={newPostElement} placeholder="Что нового?"></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newTextPost}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>ADD POST</button>

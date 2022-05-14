@@ -8,6 +8,7 @@ import Photos from "./components/Photos/Photos";
 import Music from "./components/Music/Music";
 import Videos from "./components/Videos/Videos";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {updateNewPostText} from "./Redux/state";
 
 const App = (props) => {
 
@@ -20,7 +21,7 @@ const App = (props) => {
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path='/dialogs/*' element={<Dialogs dialogsData={props.appState.messagePage.dialogsData} MessageData={props.appState.messagePage.MessageData}/>}/>
-                        <Route path='/profile' element={<Profile PostData={props.appState.profilePage.PostData} addPost={props.addPost}/>}/>
+                        <Route path='/profile' element={<Profile PostData={props.appState.profilePage.PostData} addPost={props.addPost} newTextPost={props.appState.profilePage.newTextPost} updateNewPostText={props.updateNewPostText}/>}/>
                         <Route path='/photos' element={<Photos/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/videos' element={<Videos/>}/>
