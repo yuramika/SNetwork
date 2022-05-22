@@ -1,9 +1,14 @@
 import {compareArraysAsSet} from "@testing-library/jest-dom/dist/utils";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE';
+
 let store = {
     _state: {
         profilePage: {
@@ -32,7 +37,8 @@ let store = {
                 {message: 'u2', id: 4}
             ],
             newMessageBody: ''
-        }
+        },
+        sidebar: {}
     },
     getState() {
         return this._state;
@@ -44,27 +50,10 @@ let store = {
         this._callSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newTextPost,
-                likesCount: 3
-            };
-            this._state.profilePage.PostData.push(newPost)
-            this._state.profilePage.newTextPost = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newTextPost = action.newText
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.messagePage.newMessageBody = action.body;
-            this._callSubscriber(this._state);
-        } else if (action.type === SEND_MESSAGE) {
-           let body = this._state.messagePage.newMessageBody;
-            this._state.messagePage.MessageData.push({message: body, id: 5})
-            this._state.messagePage.newMessageBody = '';
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagePage = dialogsReducer(this._state.messagePage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._callSubscriber(this._state);
     }
 }
 
