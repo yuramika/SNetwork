@@ -11,7 +11,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {updateNewPostText} from "./Redux/state";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-const App = (props) => {
+const App = () => {
 
     return (
         <BrowserRouter>
@@ -22,7 +22,7 @@ const App = (props) => {
 
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path='/dialogs/*' element={<DialogsContainer />}/>
+                        <Route path='/dialogs/*' element={<DialogsContainer/>}/>
                         <Route path='/profile' element={<Profile  />}/>
                         <Route path='/photos' element={<Photos/>}/>
                         <Route path='/music' element={<Music/>}/>

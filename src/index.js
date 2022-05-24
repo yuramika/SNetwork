@@ -5,21 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./Redux/redux-store" ;
 import state, {addPost} from "./Redux/state";
-import StoreContext from "./StoreContext";
+import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export let renderEntireTree = (state)=> {
-    root.render(
-        <React.StrictMode>
-            <StoreContext.Provider value={store}>
-            <App />
-            </StoreContext.Provider>
-        </React.StrictMode>
-    );
-}
-renderEntireTree(store.getState());
+root.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>
+);
+
 reportWebVitals();
-store.subscribe(() => {
-   let state = store.getState();
-    renderEntireTree(state);
-});
