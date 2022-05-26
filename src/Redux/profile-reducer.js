@@ -20,17 +20,20 @@ case ADD_POST: {
             message: state.newTextPost,
             likesCount: 3
         };
-        let stateCopy = {...state}
-        stateCopy.PostData = [...state.PostData];
-        stateCopy.PostData.push(newPost);
-        stateCopy.newTextPost = '';
-        return stateCopy;
+        return {
+            ...state,
+            PostData: [...state.PostData, newPost],
+            newTextPost: ''
+        }
+
     }
     case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.newTextPost = {...state.newTextPost};
-            stateCopy.newTextPost = action.newText;
-            return stateCopy;
+        return  {
+                ...state,
+                newTextPost: action.newText
+            };
+
+
         }
     default:
         return state;

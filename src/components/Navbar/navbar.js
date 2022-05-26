@@ -11,6 +11,7 @@ const Navbar = () => {
                 <li><NavLink to="/photos">Photos</NavLink></li>
                 <li><NavLink to="/music">Music</NavLink></li>
                 <li><NavLink to="/videos">Videos</NavLink></li>
+                <li><NavLink to="/users">Users</NavLink></li>
             </ol>
         </nav>
 

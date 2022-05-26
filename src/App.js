@@ -10,7 +10,7 @@ import Videos from "./components/Videos/Videos";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {updateNewPostText} from "./Redux/state";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-
+import UsersContainer from "./components/Users/UsersContainer";
 const App = () => {
 
     return (
@@ -27,6 +27,7 @@ const App = () => {
                         <Route path='/photos' element={<Photos/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/videos' element={<Videos/>}/>
+                        <Route path='/users' element={<UsersContainer/>}/>
                     </Routes>
                 </div>
             </div>
