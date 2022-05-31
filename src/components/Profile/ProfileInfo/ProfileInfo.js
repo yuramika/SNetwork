@@ -1,8 +1,12 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
+import Preloader from "../../Commons/Preloader/Preloader";
 
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
     return (
         <div className={classes.content}> MAIN CONTENT
             <img src="https://papik.pro/uploads/posts/2021-09/1630753300_25-papik-pro-p-korgi-anime-risunok-29.jpg"/>
@@ -13,7 +17,9 @@ const ProfileInfo = () => {
                     alt="Easy pixel art dogs corgi. Pixel art facile chiens corgi. | Рисунки, Милые  рисунки, Мозаичные узоры"
                     data-atf="true" data-iml="1202.2000000011176"/>
             </div>
-            <div className={classes.DescriptionBlock}>AVA +DESCR</div>
+            <div className={classes.DescriptionBlock}>AVA +DESCR
+            <img src={props.profile.photos.large}/>
+            </div>
         </div>
 
     )
