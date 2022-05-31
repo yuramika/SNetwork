@@ -1,0 +1,5 @@
+qqw
+`
+wxit
+exit
+-ls
