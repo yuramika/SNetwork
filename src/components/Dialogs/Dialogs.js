@@ -1,9 +1,8 @@
 import React from "react";
 import classes from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../Redux/state";
+import {Navigate} from "react-router-dom"
 
 
 const Dialogs = (props) => {
@@ -22,22 +21,27 @@ const Dialogs = (props) => {
         let body = event.target.value;
         props.updateNewMessageBody(body);
     }
-    return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
-                {dialogsElements}
-            </div>
-            <div className={classes.messages}>
-                <div>{messagesElements}</div>
-                <div>
+
+    if (props.isAuth === false) return <Navigate to="/login"/>
+
+
+        return (
+            <div className={classes.dialogs}>
+                <div className={classes.dialogsItems}>
+                    {dialogsElements}
+                </div>
+                <div className={classes.messages}>
+                    <div>{messagesElements}</div>
+                    <div>
                     <textarea onChange={onNewMessageChange} value={newMessageBody}
                               placeholder='ENTER YOUR MESSAGE'></textarea>
-                    <button onClick={onSendMessageClick}>SEND</button>
+                        <button onClick={onSendMessageClick}>SEND</button>
+                    </div>
                 </div>
+
             </div>
 
-        </div>
+        );
+    }
 
-    );
-}
 export default Dialogs

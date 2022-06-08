@@ -4,6 +4,7 @@ import styles from "./users.module.css";
 import {NavLink} from "react-router-dom";
 import Navbar from "../Navbar/navbar";
 import * as axios from "axios";
+import {followAPI, unfollowAPI} from "../../api/api";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -30,22 +31,11 @@ let Users = (props) => {
                         </NavLink>
                 </div>
                 <div>{u.followed ?
-                    <button onClick={() => {
-                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{ },{withCredentials: true, headers: {"API-KEY": "16261bde-371d-4124-a4b4-7357cae3e186"}}).then(response => {
-                            if (response.data.resultCode === 0) {
-                                props.unfollow(u.id)
-                            }
-
-                        })
-
+                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                   props.unfollow(u.id)
                     }}>unfollow</button>
-                    : <button onClick={() => {
-                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{ },{withCredentials: true, headers: {"API-KEY": "16261bde-371d-4124-a4b4-7357cae3e186"}}).then(response => {
-                            if (response.data.resultCode === 0) {
-                                props.follow(u.id)
-                            }
-
-                        })
+                    : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                        props.follow(u.id)
                     }}>follow</button>}</div>
                 </span>
                     <span>
