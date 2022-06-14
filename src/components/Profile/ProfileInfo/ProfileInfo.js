@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
 import Preloader from "../../Commons/Preloader/Preloader";
-
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -17,8 +17,9 @@ const ProfileInfo = (props) => {
                     alt="Easy pixel art dogs corgi. Pixel art facile chiens corgi. | Рисунки, Милые  рисунки, Мозаичные узоры"
                     data-atf="true" data-iml="1202.2000000011176"/>
             </div>
-            <div className={classes.DescriptionBlock}>AVA +DESCR
-            <img src={props.profile.photos.large}/>
+            <div className={classes.DescriptionBlock}>
+                <img src={props.profile.photos.large}/>
+                <ProfileStatus status={'Hello'}/>
             </div>
         </div>
 
