@@ -31,3 +31,12 @@ export  const authAPI = {
         return instanse.get(`auth/me`)
     }
 }
+
+export const profileAPI = {
+    getStatus(userId) {
+        return  instanse.get(`profile/status/`+ userId)
+    },
+    updateStatus(status) {
+        return  instanse.put(`profile/status/` , {status : status})
+    }
+}
