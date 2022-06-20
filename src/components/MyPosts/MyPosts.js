@@ -29,7 +29,7 @@ const MyPosts = (props) => {
     )
 }
 const loginFormSchema = Yup.object({
-    newTextPost : Yup.string().min(1, 'Create any for add').required('')
+    newTextPost : Yup.string().min(2, 'Create any for add').max(10, 'only 10 symbols').required('')
 });
 
 const  AddPostForm = (props) => {
@@ -43,7 +43,7 @@ const  AddPostForm = (props) => {
 
             <Formik initialValues={
                 {newTextPost : ''}
-            } validationSchema={loginFormSchema} onSubmit={(values, {resetForm}) => {
+            } validationSchema={loginFormSchema}  onSubmit={(values, {resetForm}) => {
                 AddNewPost( values.newTextPost );
                 resetForm( {values: ''} );
 
@@ -56,7 +56,8 @@ const  AddPostForm = (props) => {
             <Field name={'newTextPost'}
                    type = {'newTextPost'}
                    as={'textarea'}
-                   placeholder={'Что нового?'}></Field>
+                   placeholder={'Что нового?'}
+                  ></Field>
             <ErrorMessage name='newTextPost' component='p' />
         </div>
     <div>

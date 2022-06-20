@@ -25,7 +25,7 @@ const Dialogs = (props) => {
     }
 */
     if (props.isAuth === false) return <Navigate to="/login"/>
-
+    debugger;
 
         return (
             <div className={classes.dialogs}>
