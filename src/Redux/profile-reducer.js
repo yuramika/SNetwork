@@ -14,7 +14,7 @@ let initialState = {
     ],
     //newTextPost: 'Что нового?',
     profile: null,
-    status: ""
+    status: ''
 }
 
 const profileReducer = (state = initialState, action) => {
