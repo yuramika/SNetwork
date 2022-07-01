@@ -6,15 +6,18 @@ import Photos from "./components/Photos/Photos";
 import Music from "./components/Music/Music";
 import Videos from "./components/Videos/Videos";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/headerContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/Commons/Preloader/Preloader";
-
+//const DialogsContainer = withSuspense(React.lazy(() => import('./components/Dialogs/DialogsContainer')));
+//const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+//const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+//const HeaderContainer = React.lazy(() => import('./components/Header/headerContainer'));
 
 class App extends React.Component {
     componentDidMount() {

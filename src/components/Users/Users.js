@@ -1,21 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import userPhoto from "../../assets/img/nophoto.jpg";
 import styles from "./users.module.css";
 import {NavLink} from "react-router-dom";
-import Navbar from "../Navbar/navbar";
-import * as axios from "axios";
-import {followAPI, unfollowAPI} from "../../api/api";
+
+
+
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
+    let curP = props.currentPage;
+    let curPF = ((curP - 5) < 0) ?  0  : curP - 5 ;
+    let curPL = curP + 5;
+    let slicedPages = pages.slice( curPF, curPL);
+
+
     return (
+
         <div>
             <div>
-                {pages.map(p => {
+                {slicedPages.map(p => {
                     return <span onClick={() => {
                         props.onPageChanged(p);
                     }} className={props.currentPage === p && styles.selectedPage}>{p}</span>
