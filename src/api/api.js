@@ -30,8 +30,8 @@ export  const authAPI = {
     getAuth() {
         return instanse.get(`auth/me`)
     },
-    login(email, password, rememberMe = false) {
-        return instanse.post(`auth/login`, {email, password, rememberMe})
+    login(email, password, rememberMe = false, captcha) {
+        return instanse.post(`auth/login`, {email, password, rememberMe, captcha})
     },
 
     logout(email, password, rememberMe = false) {
@@ -50,5 +50,14 @@ export const profileAPI = {
         const formData = new FormData();
         formData.append("image", photoFile)
         return  instanse.put(`profile/photo/` , formData, {headers: {'Content-Type':'multipart/form-data'}})
+    },
+    saveProfile(profile) {
+        return  instanse.put(`profile` , profile)
+    }
+}
+
+export  const securityAPI = {
+    getCaptchaUrl() {
+        return instanse.get(`security/get-captcha-url`)
     }
 }

@@ -17,10 +17,10 @@ const Login = (props) => {
         <div className={s.login}>
             <h1>Login</h1>
             <Formik
-                initialValues={{ email: '', password: '', rememberMe: false }}
+                initialValues={{ email: '', password: '', rememberMe: false, captcha: null }}
                 validationSchema={loginFormSchema}
                 onSubmit={(values, onSubmitProps) => {
-                    props.login(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting);
+                    props.login(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting,values.captcha);
                     onSubmitProps.setSubmitting(true);
 
                 }}
@@ -41,6 +41,12 @@ const Login = (props) => {
                             <Field type='checkbox' name='rememberMe' />
                             <label htmlFor='rememberMe'>remember me</label>
                         </div>
+                        <div>
+                            {props.captchaUrl && <img src={props.captchaUrl} />}
+                        </div>
+                        <div>
+                            {props.captchaUrl && <Field type='captcha' name='captcha' placeholder='captcha'/>}
+                        </div>
                         <button type="submit" disabled={formik.isSubmitting}>Login</button>
                         {formik.status && <div>{formik.status}</div>}
                     </Form>
@@ -52,6 +58,7 @@ const Login = (props) => {
 
 let mapStateToProps = (state) => {
     return{
-        isAuth : state.auth.isAuth
+        isAuth : state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }}
 export default connect(mapStateToProps, {login}) (Login);
